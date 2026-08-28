@@ -100,6 +100,10 @@ class DiceLoss(nn.Module):
     def forward(self, preds, targets):
         #get the sigmoid outputs [0-1]
         preds = torch.sigmoid(preds)
+        
+        #flatten per image
+        preds = preds.view(preds.size(0), -1)
+        targets  = targets.view(targets.size(0), -1)
 
         #intersection (overlapping region, where 1 both that overlaps)
         intersection = (preds * targets).sum()
@@ -108,7 +112,7 @@ class DiceLoss(nn.Module):
         #dice score (2* iou)
         dice = ( 2.0 * intersection + self.smooth) / (union + self.smooth)
         
-        return 1 - dice      
+        return 1 - dice.mean()      
         
         
         

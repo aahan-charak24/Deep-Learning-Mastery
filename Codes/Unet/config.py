@@ -2,7 +2,7 @@ import torch
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-IMAGE_SIZE = 256
+IMAGE_SIZE = 128
 
 BATCH_SIZE = 8
 

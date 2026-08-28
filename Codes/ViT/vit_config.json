@@ -1,0 +1,7 @@
+{
+    "n_heads" : 8,
+"embed_dim" : 256,
+"n_blocks" : 6,
+"patch_size" : 16
+
+}

@@ -17,6 +17,14 @@ torch.backends.cudnn.benchmark = True
 train_transform = A.Compose([
     A.Resize(config.IMAGE_SIZE, config.IMAGE_SIZE),
     A.HorizontalFlip(p = 0.5),
+    A.VerticalFlip(p = 0.2),
+    A.ShiftScaleRotate(
+        shift_range =  (-0.08, 0.08),
+        scale_range = (-0.2, 0.2),
+        rotate_range = (-25, 25),
+        p = 0.4
+        ),
+    
     A.Normalize(
         mean = (0.485, 0.456, 0.406),
         std = (0.229, 0.224, 0.225)
@@ -68,7 +76,7 @@ for epoch in range(config.EPOCHS):
         images = images.to(config.DEVICE)
         
         #mask to gpu
-        masks = masks.to(config.DEVICE)
+        masks = masks.float().to(config.DEVICE)
         
         #forward pass
         outputs = model(images)

@@ -53,9 +53,9 @@ class KVASIR(Dataset):
             )
 
             image = augmented['image']
-            mask = augmented['mask']
+            mask = augmented['mask'].float()
             
-        mask = mask.unsqueeze(0)
+        mask = mask.float().unsqueeze(0)
         
         return image, mask
         
