@@ -3,3 +3,8 @@ Codes/Unet/Datasets/
 **/__pycache__/
 **/.venv/
 *.pth
+** __pycache__/
+Codes/ViT/dataset/
+Codes/ViT/Model/
+
+
